@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runware Image Generator</title>
+    <style>
+        #status, #cost {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #result img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Runware Image Generator</h1>
+    <form id="imageForm">
+        <input type="text" id="positivePrompt" placeholder="Positive Prompt" value="cat" required>
+        <input type="text" id="negativePrompt" placeholder="Negative Prompt">
+        <input type="number" id="width" placeholder="Width" value="896" required>
+        <input type="number" id="height" placeholder="Height" value="512" required>
+        <input type="text" id="model" placeholder="Model" value="runware:100@1" required>
+        <input type="number" id="numberResults" placeholder="Number of Results" value="1" min="1" max="5">
+        <button type="submit">Generate Image</button>
+    </form>
+    <div id="status"></div>
+    <div id="cost"></div>
+    <div id="result"></div>
+
+    <script>
+        const statusElement = document.getElementById('status');
+        const costElement = document.getElementById('cost');
+        const resultElement = document.getElementById('result');
+
+        function updateStatus(message) {
+            statusElement.textContent = message;
+        }
+
+        document.getElementById('imageForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            updateStatus('Preparing to generate image...');
+            costElement.textContent = '';
+            resultElement.innerHTML = '';
+
+            const formData = {
+                positivePrompt: document.getElementById('positivePrompt').value,
+                negativePrompt: document.getElementById('negativePrompt').value,
+                width: document.getElementById('width').value,
+                height: document.getElementById('height').value,
+                model: document.getElementById('model').value,
+                numberResults: document.getElementById('numberResults').value
+            };
+
+            try {
+                updateStatus('Sending request to server...');
+                const response = await fetch('/generate-image', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                updateStatus('Processing server response...');
+                const images = await response.json();
+
+                if (!images || images.length === 0) {
+                    throw new Error('No images received from the server');
+                }
+
+                updateStatus('Loading generated images...');
+                let totalCost = 0;
+                images.forEach((image) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        resultElement.appendChild(img);
+                    };
+                    img.onerror = () => {
+                        console.error('Failed to load image:', image.imageURL);
+                    };
+                    img.src = image.imageURL;
+                    totalCost += image.cost || 0;
+                });
+
+                updateStatus(`Successfully generated ${images.length} image(s)!`);
+                costElement.textContent = `Total cost: ${totalCost.toFixed(4)}`;
+            } catch (error) {
+                console.error('Error:', error);
+                updateStatus(`An error occurred: ${error.message}`);
+            }
+        });
+    </script>
+</body>
+</html>
