@@ -60,9 +60,8 @@
                 <div class="input-group">
                     <select id="model" required>
                         <option value="" disabled>Select Model</option>
-                        <option value="runware:100@1" selected>FLUX Runware 100</option>
+                        <option value="runware:100@1" selected>FLUX Runware v1</option>
                         <option value="civitai:277058@646523">SDXL epiCRealism XL V8-KiSS</option>
-                        <option value="civitai:645943@742989">Flux Unchained Public</option>
                         <!-- Add more models as needed -->      
                     </select>
                 </div>
@@ -81,9 +80,9 @@
 
                 <div class="input-group">
                     <select id="outputFormat">
-                        <option value="WEBP" selected>WEBP</option>
-                        <option value="JPG">JPG</option>
-                        <option value="PNG">PNG</option>
+                        <option value="WEBP" selected>WEBP Output</option>
+                        <option value="JPG">JPG Output</option>
+                        <option value="PNG">PNG Output</option>
                     </select>
                 </div>
 
@@ -97,9 +96,9 @@
                     <select id="steps">
                         <option value="" disabled>Steps</option>
                         <option value="2">2</option>
-                        <option value="4" selected>4 Flux</option>
+                        <option value="4" selected>4 Steps, ideal for Flux</option>
                         <option value="20">20</option>
-                        <option value="28">28 SDXL</option>
+                        <option value="28">28 Steps, ideal for SDXL</option>
                         <option value="40">40</option>
 
                     </select>
@@ -108,12 +107,12 @@
                 <div class="input-group">
                     <select id="CFGScale">
                         <option value="" disabled>Guidance Scale (1-30)</option>
-                        <option value="5">5 SDXL</option>
+                        <option value="5">5 Steps, ideal for SDXL</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
                         <option value="20">20</option>
                         <option value="25">25</option>
-                        <option value="30" selected>30 Flux</option>
+                        <option value="30" selected>30 CFG, ideal for Flux</option>
                     </select>
                 </div>
 
@@ -136,7 +135,6 @@
                         <option value="">No LoRa</option>
                         <option value="civitai:178910@200827">SDXL CCTV</option>
                         <option value="civitai:124347@148870">SDXL Art Enhancer</option>
-                        <option value="civitai:631986@706528">Flux Realism LoRA</option>
 
                         <!-- Add more configurations as needed -->
                     </select>
