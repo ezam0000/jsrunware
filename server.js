@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const http = require('http');
 const { RunwareServer } = require('@runware/sdk-js');
 const app = express();
 const port = 3000;
@@ -37,7 +38,7 @@ app.post('/generate-image', async (req, res) => {
       height: parseInt(height),
       model,
       numberResults: parseInt(numberResults) || 1,
-      outputType: "URL", // Assuming you want URLs, change if needed
+      outputType: "URL",
       outputFormat,
       scheduler,
       steps: parseInt(steps),
@@ -54,6 +55,18 @@ app.post('/generate-image', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+// Start the server
+const server = app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+// Keep-alive pings to maintain server connection
+const keepAliveInterval = 25 * 60 * 1000; // 25 minutes in milliseconds
+setInterval(() => {
+  console.log('Sending keep-alive ping to server...');
+  http.get(`http://localhost:${port}`, (res) => {
+    console.log(`Keep-alive response status: ${res.statusCode}`);
+  }).on('error', (err) => {
+    console.error('Error with keep-alive ping:', err.message);
+  });
+}, keepAliveInterval);
