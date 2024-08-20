@@ -7,27 +7,32 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Runware Image Generator</h1>
-    <form id="imageForm">
-        <input type="text" id="positivePrompt" placeholder="Positive Prompt" value="cat" required>
-        <input type="text" id="negativePrompt" placeholder="Negative Prompt" value="lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, username, watermark, signature">
-        <input type="number" id="width" placeholder="Width" value="896" required>
-        <input type="number" id="height" placeholder="Height" value="512" required>
-        <input type="text" id="model" placeholder="Model" value="runware:100@1" required>
-        <input type="number" id="numberResults" placeholder="Number of Results" value="1" min="1" max="5">
-        <div id="toggleEnhance">
-            <span>Enhance Prompt</span>
-            <label class="toggle-switch">
-                <input type="checkbox" id="enhanceToggle" checked>
-                <span class="slider"></span>
-            </label>
+    <div class="container">
+        <div class="form-container">
+            <h1>Runware Image Generator</h1>
+            <form id="imageForm">
+                <input type="text" id="positivePrompt" placeholder="Positive Prompt" value="cat" required>
+                <input type="text" id="negativePrompt" placeholder="Negative Prompt" value="lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, username, watermark, signature">
+                <input type="number" id="width" placeholder="Width" value="896" required>
+                <input type="number" id="height" placeholder="Height" value="512" required>
+                <input type="text" id="model" placeholder="Model" value="runware:100@1" required>
+                <input type="number" id="numberResults" placeholder="Number of Results" value="1" min="1" max="5">
+                <div id="toggleEnhance">
+                    <span>Enhance Prompt</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="enhanceToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button type="submit">Generate Image</button>
+            </form>
         </div>
-        <button type="submit">Generate Image</button>
-    </form>
-    <div id="status"></div>
-    <div id="cost"></div>
-    <div id="result"></div>
-
+        <div class="output-container">
+            <div id="status"></div>
+            <div id="cost"></div>
+            <div id="result"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
