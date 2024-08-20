@@ -11,19 +11,114 @@
         <div class="form-container">
             <h1>Runware Image Generator</h1>
             <form id="imageForm">
-                <input type="text" id="positivePrompt" placeholder="Positive Prompt" value="cat" required>
-                <input type="text" id="negativePrompt" placeholder="Negative Prompt" value="lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, username, watermark, signature">
-                <input type="number" id="width" placeholder="Width" value="896" required>
-                <input type="number" id="height" placeholder="Height" value="512" required>
-                <input type="text" id="model" placeholder="Model" value="runware:100@1" required>
-                <input type="number" id="numberResults" placeholder="Number of Results" value="1" min="1" max="5">
-                <div id="toggleEnhance">
+                <div class="input-group">
+                    <input type="text" id="positivePrompt" placeholder="Positive Prompt" value="cat" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="negativePrompt" placeholder="Negative Prompt" value="lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, username, watermark, signature">
+                </div>
+
+                <div class="input-group">
+                    <select id="width" required>
+                        <option value="" disabled>Width</option>
+                        <option value="512">512</option>
+                        <option value="640">640</option>
+                        <option value="768">768</option>
+                        <option value="896" selected>896</option>
+                        <option value="1024">1024</option>
+                        <option value="1152">1152</option>
+                        <option value="1280">1280</option>
+                        <option value="1408">1408</option>
+                        <option value="1536">1536</option>
+                        <option value="1664">1664</option>
+                        <option value="1792">1792</option>
+                        <option value="1920">1920</option>
+                        <option value="2048">2048</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <select id="height" required>
+                        <option value="" disabled>Height</option>
+                        <option value="512" selected>512</option>
+                        <option value="640">640</option>
+                        <option value="768">768</option>
+                        <option value="896">896</option>
+                        <option value="1024">1024</option>
+                        <option value="1152">1152</option>
+                        <option value="1280">1280</option>
+                        <option value="1408">1408</option>
+                        <option value="1536">1536</option>
+                        <option value="1664">1664</option>
+                        <option value="1792">1792</option>
+                        <option value="1920">1920</option>
+                        <option value="2048">2048</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="model" placeholder="Model" value="runware:100@1" required>
+                </div>
+
+                <div class="input-group">
+                    <select id="numberResults">
+                        <option value="" disabled>Number of Results (1-5)</option>
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <select id="outputFormat">
+                        <option value="WEBP" selected>WEBP</option>
+                        <option value="JPG">JPG</option>
+                        <option value="PNG">PNG</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <select id="scheduler">
+                        <option value="default">Default Scheduler</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <select id="steps">
+                        <option value="" disabled>Steps</option>
+                        <option value="2">2</option>
+                        <option value="4" selected>4</option>
+                    
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <select id="CFGScale">
+                        <option value="" disabled>Guidance Scale (1-30)</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30" selected>30</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <input type="number" id="seed" placeholder="Seed" value="">
+                </div>
+
+                <div class="input-group">
                     <span>Enhance Prompt</span>
                     <label class="toggle-switch">
-                        <input type="checkbox" id="enhanceToggle" unchecked>
+                        <input type="checkbox" id="enhanceToggle">
                         <span class="slider"></span>
                     </label>
                 </div>
+
                 <button type="submit">Generate Image</button>
             </form>
         </div>

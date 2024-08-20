@@ -40,10 +40,15 @@ document.getElementById('imageForm').addEventListener('submit', async (e) => {
     const formData = {
         positivePrompt,
         negativePrompt: document.getElementById('negativePrompt').value,
-        width: document.getElementById('width').value,
-        height: document.getElementById('height').value,
+        width: parseInt(document.getElementById('width').value),
+        height: parseInt(document.getElementById('height').value),
         model: document.getElementById('model').value,
-        numberResults: document.getElementById('numberResults').value
+        numberResults: parseInt(document.getElementById('numberResults').value),
+        outputFormat: document.getElementById('outputFormat').value,
+        scheduler: document.getElementById('scheduler').value,
+        steps: parseInt(document.getElementById('steps').value),
+        CFGScale: parseFloat(document.getElementById('CFGScale').value),
+        seed: parseInt(document.getElementById('seed').value)
     };
 
     try {
@@ -67,6 +72,7 @@ document.getElementById('imageForm').addEventListener('submit', async (e) => {
 
         updateStatus('Loading generated images...');
         let totalCost = 0;
+        resultElement.innerHTML = ''; // Clear previous results
         images.forEach((image) => {
             const img = new Image();
             img.onload = () => {
