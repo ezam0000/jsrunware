@@ -6,6 +6,38 @@ function updateStatus(message) {
     statusElement.textContent = message;
 }
 
+// Function to update default values based on the selected model
+document.getElementById('model').addEventListener('change', function () {
+    const selectedModel = this.value;
+
+    if (selectedModel === 'runware:100@1') {
+        // Defaults for FLUX Runware v1
+        document.getElementById('width').value = '896';
+        document.getElementById('height').value = '512';
+        document.getElementById('steps').value = '4';
+        document.getElementById('CFGScale').value = '30';
+        document.getElementById('scheduler').value = 'default';
+    } else if (selectedModel === 'civitai:277058@646523'){
+        // Defaults for SDXL epiCRealism XL V8-KiSS
+        document.getElementById('width').value = '896';
+        document.getElementById('height').value = '896';
+        document.getElementById('steps').value = '28';
+        document.getElementById('CFGScale').value = '5';
+        document.getElementById('scheduler').value = 'DPM++ 2M Karras';
+
+        // Defaults for SD Base
+    } else if (selectedModel === 'civitai:25694@143906') {
+        document.getElementById('width').value = '512';
+        document.getElementById('height').value = '512';
+        document.getElementById('steps').value = '28';
+        document.getElementById('CFGScale').value = '5';
+        document.getElementById('scheduler').value = 'DPM++ 2M Karras';
+
+    }
+
+    // Add more conditions if more models are added
+});
+
 document.getElementById('imageForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     updateStatus('Processing...');

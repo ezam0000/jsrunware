@@ -62,10 +62,19 @@
                         <option value="" disabled>Select Model</option>
                         <option value="runware:100@1" selected>FLUX Runware v1</option>
                         <option value="civitai:277058@646523">SDXL epiCRealism XL V8-KiSS</option>
-                        <!-- Add more models as needed -->      
+                        <option value="civitai:25694@143906">SD Base</option>
                     </select>
                 </div>
-                
+
+                <!-- Move LoRA input below the model field -->
+                <div class="input-group">
+                    <select id="lora">
+                        <option value="" disabled>Select LoRA Configuration</option>
+                        <option value="">No LoRa</option>
+                        <option value="civitai:178910@200827">SDXL CCTV</option>
+                        <option value="civitai:124347@148870">SDXL Art Enhancer</option>
+                    </select>
+                </div>
 
                 <div class="input-group">
                     <select id="numberResults">
@@ -89,6 +98,7 @@
                 <div class="input-group">
                     <select id="scheduler">
                         <option value="default">Default Scheduler</option>
+                        <option value="DPM++ 2M Karras">DPM++ 2M Karras</option>
                     </select>
                 </div>
 
@@ -100,7 +110,6 @@
                         <option value="20">20</option>
                         <option value="28">28 Steps, ideal for SDXL</option>
                         <option value="40">40</option>
-
                     </select>
                 </div>
 
@@ -120,26 +129,13 @@
                     <input type="number" id="seed" placeholder="Seed" value="">
                 </div>
 
-                <div class="input-group">
-                    <span>Enhance Prompt</span>
-                    <label class="toggle-switch">
+                <div class="input-group" style="display: flex; align-items: center;">
+                    <span style="flex: 1;">Enhance Prompt</span>
+                    <label class="toggle-switch" style="flex-shrink: 0;">
                         <input type="checkbox" id="enhanceToggle">
                         <span class="slider"></span>
                     </label>
                 </div>
-
-                <!-- New input for LoRA -->
-                <div class="input-group">
-                    <select id="lora" >
-                        <option value="" disabled>Select LoRA Configuration</option>
-                        <option value="">No LoRa</option>
-                        <option value="civitai:178910@200827">SDXL CCTV</option>
-                        <option value="civitai:124347@148870">SDXL Art Enhancer</option>
-
-                        <!-- Add more configurations as needed -->
-                    </select>
-                </div>
-                
 
                 <button type="submit">Generate Image</button>
             </form>
