@@ -58,8 +58,15 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="text" id="model" placeholder="Model" value="runware:100@1" required>
+                    <select id="model" required>
+                        <option value="" disabled>Select Model</option>
+                        <option value="runware:100@1" selected>FLUX Runware 100</option>
+                        <option value="civitai:277058@646523">SDXL epiCRealism XL V8-KiSS</option>
+                        <option value="civitai:645943@742989">Flux Unchained Public</option>
+                        <!-- Add more models as needed -->      
+                    </select>
                 </div>
+                
 
                 <div class="input-group">
                     <select id="numberResults">
@@ -92,7 +99,7 @@
                         <option value="2">2</option>
                         <option value="4" selected>4 Flux</option>
                         <option value="20">20</option>
-                        <option value="28">2 SDXL</option>
+                        <option value="28">28 SDXL</option>
                         <option value="40">40</option>
 
                     </select>
@@ -124,8 +131,17 @@
 
                 <!-- New input for LoRA -->
                 <div class="input-group">
-                    <input type="text" id="lora" placeholder="LoRA Configurations (JSON format)" value="">
+                    <select id="lora" >
+                        <option value="" disabled>Select LoRA Configuration</option>
+                        <option value="">No LoRa</option>
+                        <option value="civitai:178910@200827">SDXL CCTV</option>
+                        <option value="civitai:124347@148870">SDXL Art Enhancer</option>
+                        <option value="civitai:631986@706528">Flux Realism LoRA</option>
+
+                        <!-- Add more configurations as needed -->
+                    </select>
                 </div>
+                
 
                 <button type="submit">Generate Image</button>
             </form>
