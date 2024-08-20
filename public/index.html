@@ -91,7 +91,9 @@
                         <option value="" disabled>Steps</option>
                         <option value="2">2</option>
                         <option value="4" selected>4</option>
-                    
+                        <option value="20">20</option>
+                        <option value="40">40</option>
+
                     </select>
                 </div>
 
@@ -117,6 +119,11 @@
                         <input type="checkbox" id="enhanceToggle">
                         <span class="slider"></span>
                     </label>
+                </div>
+
+                <!-- New input for LoRA -->
+                <div class="input-group">
+                    <input type="text" id="lora" placeholder="LoRA Configurations (JSON format)" value="">
                 </div>
 
                 <button type="submit">Generate Image</button>

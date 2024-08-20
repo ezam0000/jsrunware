@@ -28,7 +28,8 @@ app.post('/generate-image', async (req, res) => {
       scheduler,
       steps,
       CFGScale,
-      seed
+      seed,
+      lora // LoRA parameter
     } = req.body;
 
     const images = await runware.requestImages({
@@ -45,7 +46,8 @@ app.post('/generate-image', async (req, res) => {
       CFGScale: parseFloat(CFGScale),
       seed: parseInt(seed),
       checkNSFW: true,
-      includeCost: true
+      includeCost: true,
+      lora // Pass LoRA as received
     });
 
     res.json(images);

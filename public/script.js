@@ -37,6 +37,10 @@ document.getElementById('imageForm').addEventListener('submit', async (e) => {
         }
     }
 
+    // Retrieve and format the LoRA input
+    const loraInput = document.getElementById('lora').value.trim();
+    const loraArray = loraInput ? [{ model: loraInput, weight: 1.0 }] : [];
+
     const formData = {
         positivePrompt,
         negativePrompt: document.getElementById('negativePrompt').value,
@@ -48,7 +52,8 @@ document.getElementById('imageForm').addEventListener('submit', async (e) => {
         scheduler: document.getElementById('scheduler').value,
         steps: parseInt(document.getElementById('steps').value),
         CFGScale: parseFloat(document.getElementById('CFGScale').value),
-        seed: parseInt(document.getElementById('seed').value)
+        seed: parseInt(document.getElementById('seed').value),
+        lora: loraArray // Include LoRA as an array of objects
     };
 
     try {
