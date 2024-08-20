@@ -38,7 +38,7 @@ document.getElementById('imageForm').addEventListener('submit', async (e) => {
     }
 
     const formData = {
-        positivePrompt: document.getElementById('positivePrompt').value,
+        positivePrompt,
         negativePrompt: document.getElementById('negativePrompt').value,
         width: document.getElementById('width').value,
         height: document.getElementById('height').value,
